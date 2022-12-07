@@ -1,3 +1,7 @@
 ./../*/*/.idea
 ./.idea*
 ./*.idea*
+2.1-Demo-create-Custom-Secrializers/java-custom-serializer/.idea/
+2.1-Demo-create-Custom-Secrializers/java-custom-serializer/.gradle/
+./*/*/.idea/
+./*/*/.gradle/
