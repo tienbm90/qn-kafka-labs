@@ -1,0 +1,16 @@
+[0m[[0m[0mdebug[0m] [0m[0mAcquiring lock on file /Users/tienbm/Workspace/KAFKA-Taxatio/TaxtioKafkaLab/2. Demo-Create-Kafka-Producer/demo-create-kafka-producer/project/target/.sbt-compilation-infos/root-compile/.sbt-idea-lock ...[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/tienbm/Workspace/KAFKA-Taxatio/TaxtioKafkaLab/2. Demo-Create-Kafka-Producer/demo-create-kafka-producer/src/main/scala/com/kafka/scala/demo2/KafkaProducer.scala:6:43: imported `KafkaProducer` is permanently hidden by definition of object KafkaProducer in package subdemo1[0m
+[0m[[0m[33mwarn[0m] [0m[0mimport org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/tienbm/Workspace/KAFKA-Taxatio/TaxtioKafkaLab/2. Demo-Create-Kafka-Producer/demo-create-kafka-producer/src/main/scala/com/kafka/scala/demo2/StudentSerializer.scala:4:12: object fasterxml is not a member of package com[0m
+[0m[[0m[31merror[0m] [0m[0mimport com.fasterxml.jackson.databind.ObjectMapper[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/tienbm/Workspace/KAFKA-Taxatio/TaxtioKafkaLab/2. Demo-Create-Kafka-Producer/demo-create-kafka-producer/src/main/scala/com/kafka/scala/demo2/StudentSerializer.scala:9:20: not found: type ObjectMapper[0m
+[0m[[0m[31merror[0m] [0m[0m  var objectMapper:ObjectMapper = null;[0m
+[0m[[0m[31merror[0m] [0m[0m                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/tienbm/Workspace/KAFKA-Taxatio/TaxtioKafkaLab/2. Demo-Create-Kafka-Producer/demo-create-kafka-producer/src/main/scala/com/kafka/scala/demo2/StudentSerializer.scala:12:24: not found: type ObjectMapper[0m
+[0m[[0m[31merror[0m] [0m[0m    objectMapper = new ObjectMapper();[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[0mdebug[0m] [0m[0mReleasing lock on file /Users/tienbm/Workspace/KAFKA-Taxatio/TaxtioKafkaLab/2. Demo-Create-Kafka-Producer/demo-create-kafka-producer/project/target/.sbt-compilation-infos/root-compile/.sbt-idea-lock.[0m

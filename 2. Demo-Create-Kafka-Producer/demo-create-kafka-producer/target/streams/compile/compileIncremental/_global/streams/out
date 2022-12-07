@@ -1,0 +1,57 @@
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] IncrementalCompile -----------[0m
+[0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
+[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 0 products, 0 sources, 0 libraries[0m
+[0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/src/main/scala/com/kafka/scala/demo2/StudentSerializer.scala, ${BASE}/src/main/scala/com/kafka/scala/demo2/KafkaProducer.scala, ${BASE}/src/main/scala/com/kafka/scala/demo2/Student.scala)[0m
+[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(${BASE}/src/main/scala/com/kafka/scala/demo2/KafkaProducer.scala, ${BASE}/src/main/scala/com/kafka/scala/demo2/Student.scala, ${BASE}/src/main/scala/com/kafka/scala/demo2/StudentSerializer.scala), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())[0m
+[0m[[0m[0mdebug[0m] [0m[0mFull compilation, no sources in previous analysis.[0m
+[0m[[0m[0mdebug[0m] [0m[0mall 3 sources are invalidated[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: [0m
+[0m[[0m[0mdebug[0m] [0m[0mRecompiling all sources: number of invalidated sources > 50.0 percent of all sources[0m
+[0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 3 Scala sources to /Users/tienbm/Workspace/KAFKA-Taxatio/TaxtioKafkaLab/2. Demo-Create-Kafka-Producer/demo-create-kafka-producer/target/scala-2.13/classes ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mGetting org.scala-sbt:compiler-bridge_2.13:1.8.0:compile for Scala 2.13.10[0m
+[0m[[0m[0minfo[0m] [0m[0mNon-compiled module 'compiler-bridge_2.13' for Scala 2.13.10. Compiling...[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreating plain compiler interface for 2.13.10.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > Arguments: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	-d[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_edfeb058[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-nowarn[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-bootclasspath[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-classpath[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/compiler-interface/1.8.0/compiler-interface-1.8.0.jar:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/util-interface/1.8.0/util-interface-1.8.0.jar:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/compiler-bridge_2.13/1.8.0/compiler-bridge_2.13-1.8.0-sources.jar:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.10/scala-compiler-2.13.10.jar:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.10/scala-reflect-2.13.10.jar:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/io/github/java-diff-utils/java-diff-utils/4.12/java-diff-utils-4.12.jar:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/jline/jline/3.21.0/jline-3.21.0.jar:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/net/java/dev/jna/jna/5.9.0/jna-5.9.0.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/scala/ZincCompat.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/API.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/AbstractZincFile.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/Analyzer.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/CallbackGlobal.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/ClassName.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/Compat.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/CompilerBridge.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/ConsoleBridge.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/DelegatingReporter.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/Dependency.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/ExtractAPI.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/ExtractUsedNames.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/GlobalHelpers.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/InteractiveConsoleBridge.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/InteractiveConsoleFactoryBridge.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/InteractiveConsoleHelper.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/InteractiveConsoleResponse.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/JarUtils.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/JavaUtils.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/LocalToNonLocalClass.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/LocateClassFile.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/Log.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/Message.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/var/folders/nj/69_68s7s4rldwbzfz1j_pqgh0000gn/T/sbt_b084149e/xsbt/ScaladocBridge.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0m      [0m
+[0m[[0m[0minfo[0m] [0m[0m  Compilation completed in 3.306s.[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 4c381012 for Scala compiler version 2.13.10[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] The Scala compiler is invoked with:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-bootclasspath[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-classpath[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/Users/tienbm/Workspace/KAFKA-Taxatio/TaxtioKafkaLab/2. Demo-Create-Kafka-Producer/demo-create-kafka-producer/target/scala-2.13/classes:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/apache/kafka/kafka-clients/3.3.1/kafka-clients-3.3.1.jar:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/github/luben/zstd-jni/1.5.2-1/zstd-jni-1.5.2-1.jar:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/lz4/lz4-java/1.8.0/lz4-java-1.8.0.jar:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/xerial/snappy/snappy-java/1.1.8.4/snappy-java-1.1.8.4.jar:/Users/tienbm/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0mCompilation failed (CompilerInterface)[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) Compilation failed[0m

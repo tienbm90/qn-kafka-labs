@@ -2,12 +2,13 @@ package com.kafka.scala.demo2.subdemo1
 
 import java.util.Properties
 
+
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 
 object KafkaProducer {
 
   def main(args: Array[String]): Unit = {
-    val topic = "monitor_events"
+    val topic = "purchases"
     val producer = getKafkaProducer(topic)
     while(true) {
       val student:Student = new Student("Mike", 55)
