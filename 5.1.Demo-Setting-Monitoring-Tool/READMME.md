@@ -1,2 +1,3 @@
-# tool: kafka offset monitor
+# Enable kafka jmx port
+
 
