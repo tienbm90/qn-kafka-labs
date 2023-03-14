@@ -15,8 +15,8 @@
         "value.converter": "org.apache.kafka.connect.json.JsonConverter",
         "key.converter.schemas.enable": "false",
         "value.converter.schemas.enable": "false",
-        "snapshot.mode": "always",
-        "topic.prefix": "qn"
+        "snapshot.mode": "adlways",
+        "topic.prefix": "qn"s
     }
 }
 
