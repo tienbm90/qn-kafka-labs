@@ -31,19 +31,25 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_JMX_PORT: 9101
       KAFKA_JMX_HOSTNAME: localhost
-      KAFKA_SSL_KEYSTORE_FILENAME: kafka.keystore.jks
-      # KAFKA_SSL_KEYSTORE_CREDENTIALS: kafka1_keystore_creds
-      KAFKA_SSL_KEY_CREDENTIALS: cakey
-      KAFKA_SSL_TRUSTSTORE_FILENAME: kafka.truststore.jks
+      # KAFKA_SSL_KEYSTORE_FILENAME: kafka.keystore.jks
+      # # KAFKA_SSL_KEYSTORE_CREDENTIALS: kafka1_keystore_creds
+      # KAFKA_SSL_KEY_CREDENTIALS: cakey
+      # KAFKA_SSL_TRUSTSTORE_FILENAME: kafka.truststore.jks
       # KAFKA_SSL_TRUSTSTORE_CREDENTIALS: kafka1_truststore_creds
       #KAFKA_SSL_CIPHER_SUITES: ${SSL_CIPHER_SUITES}
       KAFKA_SSL_CLIENT_AUTH: "requested"
       # KAFKA_SSL_KEYSTORE_LOCATION: '/etc/kafka/certs/kafka.keystore.jks'
-      KAFKA_SSL_KEYSTORE_PASSWORD: '123456'
-      KAFKA_SSL_KEY_PASSWORD: '123456'
-      # KAFKA_SSL_TRUSTSTORE_LOCATION: '/etc/kafka/certs/kafka.truststore.jks'
-      KAFKA_SSL_TRUSTSTORE_PASSWORD: '123456'
-      KAFKA_SSL_ENABLE_PROTOCOL: 'TLSv1.2,TLSv1.1,TLSv1'
+      # KAFKA_SSL_KEYSTORE_PASSWORD: '123456'
+      # KAFKA_SSL_KEY_PASSWORD: '123456'
+      # # KAFKA_SSL_TRUSTSTORE_LOCATION: '/etc/kafka/certs/kafka.truststore.jks'
+      # KAFKA_SSL_TRUSTSTORE_PASSWORD: '123456'
+      # KAFKA_SSL_ENABLE_PROTOCOL: 'TLSv1.2,TLSv1.1,TLSv1'
+
+      KAFKA_SSL_KEYSTORE_FILENAME: '/etc/kafka/certs/kafka.keystore.jks'
+      # KAFKA_SSL_KEYSTORE_CREDENTIALS: '/certs/kafka_keystore_credentials'
+      KAFKA_SSL_KEY_CREDENTIALS: '/certs/kafka_sslkey_credentials'
+      KAFKA_SSL_TRUSTSTORE_FILENAME: '/certs/kafka.server.truststore.jks'
+      # KAFKA_SSL_TRUSTSTORE_CREDENTIALS: '/certs/kafka_truststore_credentials'
 
 
     volumes:
