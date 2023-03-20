@@ -5,3 +5,11 @@ https://www.vertica.com/docs/9.3.x/HTML/Content/Authoring/KafkaIntegrationGuide/
 
 
 https://docs.confluent.io/platform/current/security/security_tutorial.html#sign-the-certificate
+
+
+```Create a schema in  schema registry 
+curl -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" \
+  --data '{"schema": "{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"io.confluent.examples.clients.basicavro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"amount\",\"type\":\"double\"}]}"}' \
+  http://localhost:8081/subjects/test-value/versions
+
+```
