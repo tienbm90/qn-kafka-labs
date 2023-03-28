@@ -23,6 +23,7 @@ services:
     ports:
       - "9092:9092"
       - "29092:29092"
+      - "9101:9101"
     depends_on:
       - zookeeper
     environment:
@@ -31,28 +32,28 @@ services:
       - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=LISTENER_INT:PLAINTEXT,LISTENER_EXT:PLAINTEXT
       - KAFKA_LISTENERS=LISTENER_INT://0.0.0.0:9092,LISTENER_EXT://0.0.0.0:29092
       - KAFKA_INTER_BROKER_LISTENER_NAME=LISTENER_INT
-      - KAFKA_JMX_PORT=9101
+      - KAFKA_JMX_PORT=49999
       - KAFKA_JMX_HOSTNAME=localhost
-      - KAFKA_JMX_OPTS="-Djava.rmi.server.hostname=127.0.0.1 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false  -Dcom.sun.management.jmxremote.ssl=false"
+      - KAFKA_JMX_OPTS=-Djava.rmi.server.hostname=kafka -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false  -Dcom.sun.management.jmxremote.ssl=false
 
-  connect:
-    image: debezium/connect:1.6
-    ports:
-      - "8083:8083"
-    environment:
-      - BOOTSTRAP_SERVERS=kafka:9092
-      - GROUP_ID=1
-      - CONFIG_STORAGE_TOPIC=my_connect_configs
-      - OFFSET_STORAGE_TOPIC=my_connect_offsets
-      - STATUS_STORAGE_TOPIC=my_connect_statuses
-      - KAFKA_AUTO_CREATE_TOPIS_ENABLE='true'
+  # connect:
+  #   image: debezium/connect:1.6
+  #   ports:
+  #     - "8083:8083"
+  #   environment:
+  #     - BOOTSTRAP_SERVERS=kafka:9092
+  #     - GROUP_ID=1
+  #     - CONFIG_STORAGE_TOPIC=my_connect_configs
+  #     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+  #     - STATUS_STORAGE_TOPIC=my_connect_statuses
+  #     - KAFKA_AUTO_CREATE_TOPIS_ENABLE='true'
 
-    depends_on:
-      - zookeeper
-      - kafka
+  #   depends_on:
+  #     - zookeeper
+      # - kafka
   exporter:
     image: danielqsj/kafka-exporter:latest
     ports: 
       - "9308:9308"
-    command: "--kafka-server="
+    command: "--kafka.server=kafka:9092 --no-sasl.handshake"
 
