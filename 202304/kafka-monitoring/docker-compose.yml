@@ -16,6 +16,7 @@ services:
     environment:
       - KAFKA_JMX_PORT=9101
       - ZOOKEEPER_CLIENT_PORT=2181
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
 
   kafka:
     image: debezium/kafka
@@ -24,6 +25,7 @@ services:
       - "9092:9092"
       - "29092:29092"
       - "9101:9101"
+      - "7071:7071"
     depends_on:
       - zookeeper
     environment:
@@ -35,25 +37,38 @@ services:
       - KAFKA_JMX_PORT=49999
       - KAFKA_JMX_HOSTNAME=localhost
       - KAFKA_JMX_OPTS=-Djava.rmi.server.hostname=kafka -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false  -Dcom.sun.management.jmxremote.ssl=false
+      - KAFKA_OPTS=-javaagent:/usr/kafka/libs/jmx_prometheus_javaagent-0.18.0.jar=7071:/usr/kafka/libs/jmx-agent-config.yml
+    volumes:
+      - ./kafka-libs:/usr/kafka/libs
 
-  # connect:
-  #   image: debezium/connect:1.6
-  #   ports:
-  #     - "8083:8083"
-  #   environment:
-  #     - BOOTSTRAP_SERVERS=kafka:9092
-  #     - GROUP_ID=1
-  #     - CONFIG_STORAGE_TOPIC=my_connect_configs
-  #     - OFFSET_STORAGE_TOPIC=my_connect_offsets
-  #     - STATUS_STORAGE_TOPIC=my_connect_statuses
-  #     - KAFKA_AUTO_CREATE_TOPIS_ENABLE='true'
-
-  #   depends_on:
-  #     - zookeeper
-      # - kafka
   exporter:
     image: danielqsj/kafka-exporter:latest
     ports: 
       - "9308:9308"
     command: "--kafka.server=kafka:9092 --no-sasl.handshake"
+  
+  prometheus:
+    image: prom/prometheus:v2.36.2
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - ./prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - 9090:9090
+  grafana:
+    image: grafana/grafana
+    user: "472"
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ./grafana/config.monitoring
+    restart: always
+    
 
