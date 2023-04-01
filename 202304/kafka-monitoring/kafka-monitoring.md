@@ -156,3 +156,160 @@ Verify our preparation:
 jmx-agent-config.yml                    jmx_prometheus_javaagent-0.18.0.jar
 ```
 
+Once we have the above file as Dockerfile, we can create our docker-compose.yml which would contain configurations for each of our services: Prometheus, Grafana, Zookeeper, and Kafka.
+
+
+```
+version: '3.9'
+services:
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=bigdata
+
+  zookeeper:
+    image: debezium/zookeeper
+    ports:
+      - "2181:2181"
+      - "2888:2888"
+      - "3888:3888"
+    environment:
+      - KAFKA_JMX_PORT=9101
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+
+  kafka:
+    image: debezium/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+      - "9101:9101"
+      - "7071:7071"
+    depends_on:
+      - zookeeper
+    environment:
+      - ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=LISTENER_EXT://localhost:29092,LISTENER_INT://kafka:9092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=LISTENER_INT:PLAINTEXT,LISTENER_EXT:PLAINTEXT
+      - KAFKA_LISTENERS=LISTENER_INT://0.0.0.0:9092,LISTENER_EXT://0.0.0.0:29092
+      - KAFKA_INTER_BROKER_LISTENER_NAME=LISTENER_INT
+      - KAFKA_JMX_PORT=49999
+      - KAFKA_JMX_HOSTNAME=localhost
+      - KAFKA_JMX_OPTS=-Djava.rmi.server.hostname=kafka -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false  -Dcom.sun.management.jmxremote.ssl=false
+      - KAFKA_OPTS=-javaagent:/usr/kafka/libs/jmx_prometheus_javaagent-0.18.0.jar=7071:/usr/kafka/libs/jmx-agent-config.yml
+    volumes:
+      - ./kafka-libs:/usr/kafka/libs
+
+  exporter:
+    image: danielqsj/kafka-exporter:latest
+    ports: 
+      - "9308:9308"
+    command: "--kafka.server=kafka:9092 --no-sasl.handshake"
+  
+  prometheus:
+    image: prom/prometheus:v2.36.2
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - ./prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - 9090:9090
+  grafana:
+    image: grafana/grafana
+    user: "472"
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ./grafana/config.monitoring
+    restart: always
+    
+```
+We will also create a default prometheus.yml file along with the docker-compose.yml. This configuration file contains all the configuration related to Prometheus. The config below is the default configuration which comes with Prometheus.
+
+```
+# my global config
+global:
+  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 15s # By default, scrape targets every 15 seconds.
+  # scrape_timeout is set to the global default (10s).
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      monitor: 'my-project'
+
+# Load and evaluate rules in this file every 'evaluation_interval' seconds.
+rule_files:
+  - 'alert.rules'
+  # - "first.rules"
+  # - "second.rules"
+
+# alert
+alerting:
+  alertmanagers:
+  - scheme: http
+    static_configs:
+    - targets:
+      - "alertmanager:9093"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+
+  - job_name: 'prometheus'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 15s
+
+    static_configs:
+         - targets: ['localhost:9090']
+  - job_name: 'kafka-exporter'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 15s
+  
+    static_configs:
+      - targets: ['broker:9308']
+
+  - job_name: 'kafka'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 15s
+  
+    static_configs:
+      - targets: ['kafka:7071']
+
+
+```
+
+Finally, we can run the “docker-compose up -d” to run our Prometheus, Grafana, Zookeeper and Kafka instances.
+
+
+Plotting the monitoring visualization on Grafana
+Now that we have configured Kafka JMX metrics to pipe into Prometheus, it's time to visualize it in Grafana. Browse to http://localhost:3000, log in using admin/admin and add the data source for Prometheus as shown below. Make sure you use the data source name as “Prometheus” since we will be referring to this data source name when we query in our Grafana dashboards.
+
+One way to create a dashboard in Grafana is to manually configure the panels one by one or to kickstart our process, we can download the pre-configured dashboard from the Grafana dashboard site and import it into your Grafana.
+
+Click on the Download JSON link and download the json file and import it into our Grafana as shown below:
+
+Make sure to choose the correct data source, which is “Prometheus” in our case, and click on the Import button.
+
+You should immediately see the dashboard reporting the following metrics from the Kafka instance:
+
+CPU Usage
+JVM Memory Used
+Time spent in GC
+Message in Per Topic
+Bytes In Per Topic
+Bytes Out Per Topic
